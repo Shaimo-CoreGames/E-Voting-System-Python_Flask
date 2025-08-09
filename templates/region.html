@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Select {{ vote_type }} Region</title>
+</head>
+
+<body>
+    <!-- region.html -->
+    <h2>Select Province for {{ vote_type }}</h2>
+    <ul>
+        {% for region in region %}
+        <li>
+            {% if vote_type == 'MPA' %}
+            <a href="{{ url_for('select_district', province_id=region[0], vote_type=vote_type) }}">{{ region[1] }}</a>
+            {% else %}
+            <a href="{{ url_for('vote_by_region_and_position', position=vote_type, region_id=region[0]) }}">{{ region[1]
+                }}</a>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Select {{ vote_type }} Region</title>
+</head>
+
+<body>
+    <!-- region.html -->
+    <h2>Select a District</h2>
+    <ul>
+        {% for district in districts %}
+        <li>
+            <a href="{{ url_for('vote_by_region_and_position', position=vote_type, region_id=district[0]) }}">
+                {{ district[1] }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>

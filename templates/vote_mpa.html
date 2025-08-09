@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vote for MPA</title>
+</head>
+
+<body>
+    <h2>Select Candidate for MPA</h2>
+    <form method="POST" action="{{ url_for('vote_mpa_submit', district_id=district_id) }}">
+        <select name="candidate" required>
+            {% for candidate in candidates %}
+            <option value="{{ candidate.id }}">{{ candidate.name }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <button type="submit">Submit Vote</button>
+    </form>
+</body>
+
+</html>

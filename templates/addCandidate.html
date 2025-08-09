@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Add Candidate</title>
+</head>
+
+<body>
+    <h2>Add Candidate</h2>
+    <form method="post" action="/admin/add_candidate">
+        <label>Candidate Name:</label>
+        <input type="text" name="name" required><br>
+
+        <label>Type:</label>
+        <select name="type" id="type" onchange="toggleDistrict()">
+            <option value="MPA">MPA</option>
+            <option value="MNA">MNA</option>
+        </select><br>
+
+        <label>Province:</label>
+        <select name="province_id" id="province" onchange="loadDistricts()">
+            {% for province in provinces %}
+            <option value="{{ province[0] }}">{{ province[1] }}</option>
+            {% endfor %}
+        </select><br>
+
+        <div id="districtDiv">
+            <label>District:</label>
+            <select name="district_id" id="district">
+                <option value="">Select District</option>
+            </select><br>
+        </div>
+
+
+        <input type="submit" value="Add Candidate">
+    </form>
+
+    <script>
+        function loadDistricts() {
+            const provinceId = document.getElementById('province').value;
+            fetch('/get_districts/' + provinceId)
+                .then(response => response.json())
+                .then(data => {
+                    const districtSelect = document.getElementById('district');
+                    districtSelect.innerHTML = ''; // Clear existing options
+
+                    data.forEach(district => {
+                        const option = document.createElement('option');
+                        option.value = district[0];
+                        option.text = district[1];
+                        districtSelect.add(option);
+                    });
+                });
+        }
+
+        function toggleDistrict() {
+            const type = document.getElementById('type').value;
+            const districtDiv = document.getElementById('districtDiv');
+            if (type === 'MPA') {
+                districtDiv.style.display = 'block';
+            } else {
+                districtDiv.style.display = 'none';
+            }
+        }
+
+        window.onload = function () {
+            toggleDistrict();
+            loadDistricts();
+        };
+    </script>
+
+
+    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+</body>
+
+</html>

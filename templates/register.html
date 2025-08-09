@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Register</title>
+</head>
+
+<body>
+    <form method="POST">
+        Username: <input type="text" name="username"><br>
+        Password: <input type="password" name="password"><br>
+        CNIC: <input type="text" name="cnic"><br>
+
+        Role:
+        <select name="is_admin">
+            <option value="0" {% if selected_role==0 %}selected{% endif %}>Voter</option>
+            <option value="1" {% if selected_role==1 %}selected{% endif %}>Admin</option>
+        </select>
+        <br>
+        <input type="submit" value="Register">
+    </form>
+
+    <a href="/login">Already have an account?</a>
+</body>
+
+</html>

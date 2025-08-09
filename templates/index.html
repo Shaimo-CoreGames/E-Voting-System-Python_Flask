@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>E-Voting System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        h1 {
+            margin-bottom: 40px;
+        }
+
+        .btn-container {
+            margin-bottom: 20px;
+        }
+
+        .btn-container a {
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .signup-links a {
+            margin: 0 15px;
+            font-size: 16px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .signup-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to the E-Voting System</h1>
+
+    <div class="btn-container">
+        <a href="{{ url_for('login', user_type='voter') }}">
+            <button>Voter Login</button>
+        </a>
+        <a href="{{ url_for('login', user_type='admin') }}">
+            <button>Admin Login</button>
+        </a>
+    </div>
+
+    <div class="signup-links">
+        <a href="/register?role=voter">Voter Sign-Up</a>
+        <a href="/register?role=admin">Admin Sign-Up</a>
+    </div>
+</body>
+
+</html>

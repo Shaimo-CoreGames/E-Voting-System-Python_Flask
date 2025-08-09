@@ -1,0 +1,54 @@
+<!-- templates/addDistrict.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Add District</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body
+    style="background: url('{{ url_for('static', filename='admin2.jpg') }}') no-repeat center center fixed; background-size: 100% 110%; background-color: #f3f7f0;">
+    <h2 class="mb-4">Add District</h2>
+
+    <!-- Flash message (auto hide after 3 seconds) -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div id="flash-msg" class="alert alert-success">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <form method="post">
+        <div class="form-group">
+            <label>District Name:</label>
+            <input type="text" name="name" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label>Select Province:</label>
+            <select name="province_id" class="form-control" required>
+                {% for province in provinces %}
+                <option value="{{ province[0] }}">{{ province[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add District</button>
+    </form>
+
+    <script>
+        // Auto-hide flash message after 3 seconds
+        setTimeout(function () {
+            var msg = document.getElementById("flash-msg");
+            if (msg) {
+                msg.style.display = "none";
+            }
+        }, 3000);
+    </script>
+</body>
+
+</html>

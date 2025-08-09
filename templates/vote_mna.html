@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vote for MNA</title>
+</head>
+
+<body>
+    <h2>Select Candidate for MNA</h2>
+
+    <form method="POST" action="{{ url_for('vote_mna_submit', province_id=province_id) }}">
+        <select name="candidate" required>
+            {% for candidate in candidates %}
+            <option value="{{ candidate.id }}">{{ candidate.name }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <button type="submit">Submit Vote</button>
+    </form>
+</body>
+
+</html>

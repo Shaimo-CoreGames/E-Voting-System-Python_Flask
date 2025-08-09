@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Election Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Election Results</h1>
+
+    {% if session.get('cnic') %}
+    <p>Logged in as: {{ session['cnic'] }}</p>
+    {% endif %}
+
+    <h2>MPA Candidates</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>District ID</th>
+            <th>Votes</th>
+        </tr>
+        {% for c in mpa_candidates %}
+        <tr>
+            <td>{{ c[1] }}</td>
+            <td>{{ c[4] }}</td>
+            <td>{{ c[5] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>MNA Candidates</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Province ID</th>
+            <th>Votes</th>
+        </tr>
+        {% for c in mna_candidates %}
+        <tr>
+            <td>{{ c[1] }}</td>
+            <td>{{ c[3] }}</td>
+            <td>{{ c[5] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Chief Ministers (CM) - Top MPA in Each Province</h2>
+    <table>
+        <tr>
+            <th>Province ID</th>
+            <th>CM Name</th>
+            <th>Votes</th>
+        </tr>
+        {% for cm in cm_results %}
+        <tr>
+            <td>{{ cm[0] }}</td>
+            <td>{{ cm[1] }}</td>
+            <td>{{ cm[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Prime Minister (PM) - Top MNA Overall</h2>
+    <table>
+        <tr>
+            <th>PM Name</th>
+            <th>Votes</th>
+        </tr>
+        <tr>
+            <td>{{ pm_result[0] }}</td>
+            <td>{{ pm_result[1] }}</td>
+        </tr>
+    </table>
+
+    <a href="{{ url_for('dashboard') }}">← Back to Dashboard</a>
+</body>
+
+</html>
