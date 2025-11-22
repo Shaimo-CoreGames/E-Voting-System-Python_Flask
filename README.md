@@ -1,6 +1,6 @@
 # eVoting System - Flask Project
 
-This is a simple **eVoting system** built using **Flask**, **MySQL**, and **Flask-Session**. It allows users to register as **voters** or **admin**, cast votes for candidates, and view results. The application includes role-based access control and session management.
+This is my first management system **eVoting system** built using **Flask**, **MySQL**, and **Flask-Session**. It allows users to register as **voters** or **admin**, cast votes for candidates, and view results. The application includes role-based access control and session management.
 
 ---
 
